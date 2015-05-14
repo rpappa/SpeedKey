@@ -102,17 +102,18 @@ body {
   border-bottom:2px solid;
   border-color: inherit;
 }
-#b {
+/*#b {
   margin-right:-1px;
   outline:0px;
   border-top: 1px dashed;
   border-left: 1px dashed;
   border-color: inherit;
   display: inline-block;
-}
+}*/
 .fill {
-  width:100%;
-  height:100%;
+  width:94%;
+  height:75%%;
+  padding:3%;
 }
 
 .opttext {

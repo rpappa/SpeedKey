@@ -68,18 +68,29 @@ function countDown() {
   }, 1000);
 }
 
-var correct;
+
+//Sequence of correct keypresses (ex. aba)
 var seq;
+
+//All 'items' from JSON
 var items;
+
+//Current item you're on
 var current;
+
+//Index in sequence (seq) you are on
 var on=0;
+
+//Holds the child element of start that you are on
 var child;
 
+//Send keypress to handleKeyPress. Could've put code here but that's no fun
 $(document).keydown(function(event){
   $('#key').text(event.which);
     handleKeyPress(event.which);
 });
 
+//Simple methods to flash a choice box green (correct) or red (incorrect)
 function flashGreen(box) {
   $('#'+box).css("background-color","rgba(0,255,0,1)");
   $('#'+box).animate({'background-color':'rgba(255,255,255,0.3)'}, {duration:300,queue: false});
@@ -89,8 +100,12 @@ function flashRed(box) {
   $('#'+box).css("background-color","rgba(255,0,0,1)");
   $('#'+box).animate({'background-color':'rgba(255,255,255,0.3)'}, {duration:300,queue: false});
 }
+
+//Handles keypress, checking if you got right or wrong.
 function handleKeyPress(l) {
+  //65=a 49=1 81=q 37=left
   if(l==65 || l==49 || l==81 || l==37) {
+    //check if the correct answer is a
     if(seq.charAt(on)=="a") {
       // alert("good");
       flashGreen("a");
@@ -103,7 +118,8 @@ function handleKeyPress(l) {
       on=0;
     }
     $('#on').text(on);
-  } else if (l==66 || l==69 || l==39 || l==50) {
+    //66=b 69=e 39=right 50=2 68=d
+  } else if (l==66 || l==69 || l==39 || l==50 || l==68) {
     if(seq.charAt(on)=="b") {
       // alert("good");
       flashGreen("b");
@@ -119,11 +135,17 @@ function handleKeyPress(l) {
   }
 }
 
+//Smilar to loadItem but loads from child variable
+function loadChild() {
+
+}
+
 // Thanks: http://stackoverflow.com/questions/1527803/generating-random-numbers-in-javascript-in-a-specific-range
 function randInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+//Load a random item
 function loadItem() {
   //If there are no items, its over
   if(items.length == 0) {
@@ -155,6 +177,7 @@ function loadItem() {
   $('#on').text(on);
 }
 
+//Run when you've gone through all items
 function end() {
   alert('you won');
 }
