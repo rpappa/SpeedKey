@@ -1,0 +1,142 @@
+/*:root {
+    --contrast-color:#1A1A1A
+}*/
+
+/*simple way to center text with a class*/
+.center {
+  text-align:center;
+  /*color:#1A1A1A;*/
+}
+
+/*thanks css font stack*/
+body {
+  font-family: Century Gothic,Verdana,Geneva,sans-serif;
+  background-color:#4CC355;
+  color:#1A1A1A;
+  outline-color:#1A1A1A;
+  border-color:#1A1A1A;
+}
+
+/*redefine for each game mode div in chooser*/
+#leafs {
+  background-color:#91EA5E;
+  background-image:url("leafs.png");
+  background-size:100%;
+}
+
+/*chosing section for keys*/
+#chooser {
+  text-align: center;
+  margin: 0 auto;
+  float: none;
+  max-width: 66%;
+  outline:1px dashed #1A5E25;
+}
+
+.choice {
+  overflow:auto;
+  width:250px;
+  height:250px;
+  outline: 1px solid;
+  outline-color:inherit;
+  display: inline-block;
+}
+.bigtext {
+  text-align:center;
+  /*color:#1A1A1A;*/
+  margin-top:20%;
+  height:60%;
+  margin-bottom:20%;
+}
+
+#timer {
+  text-align:center;
+  /*color:#1A1A1A;*/
+  margin-left:20%;
+  margin-right:20%;
+  height:100%;
+}
+
+#game {
+  height:5%;
+  width:1%;
+  margin: 0 auto;
+  float: none;
+  /*Start really small for later animation*/
+  outline: 1px dashed;
+  outline-color:inherit;
+}
+
+#options {
+  float:left;
+  height:100%;
+  width:75%;
+  display: inline-block;
+  outline: 1px solid;
+  outline-color:inherit;
+}
+
+#desc {
+  width:100%;
+  height:34%;
+}
+
+.opt {
+  background-color:rgba(255,255,255,0.3);
+  width:50%;
+  height:66%;
+  float:left;
+  display: inline-block;
+  border-top: 1px dashed;
+  border-right: 1px dashed;
+  border-color: inherit;
+  margin:-1px;
+}
+.corner {
+  padding:2px;
+  height:25%;
+  width:12.5%;
+  text-align:center;
+  display: inline-block;
+  border-right:2px solid;
+  border-bottom:2px solid;
+  border-color: inherit;
+}
+#b {
+  margin-right:-1px;
+  outline:0px;
+  border-top: 1px dashed;
+  border-left: 1px dashed;
+  border-color: inherit;
+  display: inline-block;
+}
+.fill {
+  width:100%;
+  height:100%;
+}
+
+.opttext {
+  display: inline-block;
+  -webkit-margin-before:0em;
+  -webkit-margin-after:0em;
+}
+
+#picture {
+  float:right;
+  width:25%;
+  height: 100%;
+  display:inline-block;
+  position: relative;
+}
+#display {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}

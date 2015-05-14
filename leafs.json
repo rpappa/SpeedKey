@@ -1,0 +1,29 @@
+{"name":"leafs", "folder":"leafs", "start":{"text":"1. Compound or simple leaf",
+  "a":{"text":"Compound leaf (leaf divided into leaflets)",
+    "next":{"text":"2. Arrangement of leaves",
+      "a":{"text":"Leaflets attached at central point", "finish":"leafs/ii.png"},
+      "b":{"text":"Leaflets attached at several points",
+        "next":{"text":"3. Leaflet shape",
+          "a":{"text":"Leaflets taper to pointed tip", "finish":"leafs/iii.png"},
+          "b":{"text":"Oval leaflets with rounded tips", "finish":"leafs/vii.png"}}}}},
+  "b":{"text":"Simple leaf (leaf not divided into leaflets)",
+    "next":{"text":"4. Arrangement of leaf veins",
+      "a": {"text":"Viens branch out from one central point",
+        "next":{"text":"5. Overall shape of leaf",
+          "a":{"text":"Leaf is heart shaped", "finish":"leafs/v.png"},
+          "b":{"text":"Leaf is star-shaped", "finish": "leafs/iv.png"}}},
+      "b": {"text":"Viens branch off main vein in center of leaf",
+        "next": {"text":"6. Appearance of leaf edge",
+          "a":{"text": "Leaf has toothed (jagged) edge", "finish":"leafs/i.png"},
+          "b":{"text": "Leaf has untoothed (smooth) edge", "finish":"leafs/vi.png"}}}}}},
+
+  "items":[
+    {"seq":"aa", "name": "Aesculus (buckeye)", "img": "ii.png"},
+    {"seq":"aba", "name": "Carya (pecan)", "img":"iii.png"},
+    {"seq":"abb", "name": "Robinia (locust)", "img":"vii.png"},
+    {"seq":"baa", "name": "Cercis (redbud)", "img":"v.png"},
+    {"seq":"bab", "name": "Liquidambar (sweet gum)", "img":"iv.png"},
+    {"seq":"bba", "name": "Betula (birch)", "img":"i.png"},
+    {"seq":"bbb", "name": "Magnolia (magnolia)", "img":"vi.png"}
+    ]
+}

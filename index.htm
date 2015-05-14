@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>SpeedKey</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="jquery.textfill.min.js"></script>
+    <script src="jquery.color.js"></script>
+    <script src="node.js"></script> <!--what a terrible name-->
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <span id = "seq" style="margin:5px">seq</span><span id="key" class="center" style="margin:5px">key</span><span id="on" style="margin:5px">on</span>
+    <h1 class="center">SpeedKey</h1>
+    <h3 class="center">Race through a dichotomous key as fast as you can</h3>
+    <div id="chooser"><h1>Choose your category</h1>
+      <div id="leafs" class="choice" json="leafs.json"><div class="bigtext"><span id="leafstext">Leafs</span></div></div> <!--div structure for new key-->
+      <div id="test" class="choice" json="test.json"><div class="bigtext"><span>test</span></div></div>
+    </div>
+    <div id="game">
+      <!--Main area where game is loaded. Hidden by default-->
+      <div id="timer"><span id='countdown'><!--timer text dictated by javascript--></span></div>
+      <!--Shown after timer is hidden-->
+      <div id="options">
+        <!--top box for description-->
+        <div id="desc" class="center"><span id="desctext">description here</span></div>
+        <div class="opt" id="a"><div class="corner"><span>a</span></div><div class="fill"><p class='opttext' id="atext">choice a</p></div></div>
+        <div class="opt" id="b"><div class="corner"><span>b</span></div><div class="fill"><p class='opttext' id="btext">choice b</p></div></div>
+      </div>
+      <!--where the picture is displayed-->
+      <div id="picture">
+        <img id="display" class="center">
+      </div>
+    </div>
+  </body>
+</html>
