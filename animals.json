@@ -1,0 +1,28 @@
+{"name":"Animals", "folder":"animals", "start":{"text":"1. Has legs/limbs",
+  "a":{"text":"Has two or more limbs",
+    "next":{"text":"2. Number of legs (for walking/standing)",
+      "a":{"text":"Has two legs", "next":{"text":"3. Presence of feathers",
+        "a":{"text":"Has feathers", "finish":"animals/bird.png"},
+        "b":{"text":"Has no feathers", "finish":"animals/human.png"}}},
+      "b":{"text":"Has four legs",
+        "next":{"text":"4. Nose shape",
+          "a":{"text":"Has distinctly triangle nose", "finish":"animals/cat.png"},
+          "b":{"text":"Non-triangular nose", "next":{"text":"5.Presence of tusks",
+            "a":{"text":"Has tusks", "finish":"animals/elephant.png"},
+            "b":{"text":"Has no tusks", "finish":"animals/dog.png"}}}}}}},
+  "b":{"text":"Has no limbs",
+    "next":{"text":"6. Body Shape",
+      "a":{"text":"Long body", "finish":"animals/snake.png"},
+      "b":{"text":"Short body with fins", "finish":"animals/fish.png"}}}},
+
+  "items":[
+    {"seq":"abbb", "name": "Dog", "img": "dog.png"},
+    {"seq":"aba", "name": "Cat", "img":"cat.png"},
+    {"seq":"aab", "name": "Human", "img":"human.png"},
+    {"seq":"ba", "name": "Snake", "img":"snake.png"},
+    {"seq":"bb", "name": "Fish", "img":"fish.png"},
+    {"seq":"aaa", "name": "Bird", "img":"bird.png"},
+    {"seq":"abba", "name": "Elephant", "img":"elephant.png"}
+  ],
+  "key":"animals/animals.png"
+}

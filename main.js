@@ -1,7 +1,11 @@
 var game;
 
 $(document).ready(function() {
+  //Hide stuff that should show only when the game has started
     $('#game').hide();
+    $('#timer').hide();
+    $('#name').hide();
+
     $('.bigtext').textfill({ maxFontPixels: 90 });
 
     //When the leaf box is clicked. Redo for each key
@@ -9,6 +13,18 @@ $(document).ready(function() {
       //Switch bg color. Change bg color for each key
       $('body').animate({'background-color':'#91EA5E'}, {duration:450,queue: false});
       loadJSON('leafs', function(json) {
+        game=JSON.parse(json);
+        visualizeGame(true);
+      });
+    });
+
+    $('#animals').click(function() {
+      //Switch bg color. Change bg color for each key
+      $('body').animate({'background-color':'#5414D5'}, {duration:450,queue: false});
+      $('body').animate({'color':'#C0D3C5'}, {duration:450,queue: false});
+      $('body').animate({'outline-color':'#C0D3C5'}, {duration:450,queue: false});
+      $('body').animate({'border-color':'#C0D3C5'}, {duration:450,queue: false});
+      loadJSON('animals', function(json) {
         game=JSON.parse(json);
         visualizeGame(true);
       });
@@ -28,11 +44,29 @@ function visualizeGame(start) {
       $('#game').animate({height:'60%'}, 350);
       setTimeout(function() {
       if(start) {
+        $('#timer').show();
         startGame();
       }
     }, 350);
     }, 400);
   }, 500);
+}
+
+var s=0;
+var displayS=0;
+var displayM=0;
+
+function runTimer() {
+  setInterval(function() {
+    s+=.1;
+    displayS+=.1;
+    if(displayS>=60) {
+      displayS-=60;
+      displayM+=1;
+    }
+    $('#s').text(Math.round(displayS*10)/10);
+    $('#m').text(displayM);
+  }, 100);
 }
 
 function startGame() {
@@ -43,11 +77,12 @@ function startGame() {
     $('#countdown').html("start");
     $('#countdown').fadeOut(900);
     setTimeout(function() {
-      $('#timer').hide();
+      $('#time').hide();
       $('#options').show();
       $('#picture').show();
       $('.corner').textfill({maxFontPixels:80});
       items=game.items;
+      runTimer();
       loadItem();
     },1000);
   }, 1000 /*7000*/);
@@ -56,7 +91,7 @@ function startGame() {
 function countDown() {
   var count = 5;
   $('#countdown').html(game.name);
-  $('#timer').textfill({maxFontPixels:800});
+  $('#time').textfill({maxFontPixels:800});
   var refresh = setInterval(function() {
     $('#countdown').fadeIn(20);
     $('#countdown').html(count);
@@ -101,6 +136,12 @@ function flashRed(box) {
   $('#'+box).animate({'background-color':'rgba(255,255,255,0.3)'}, {duration:300,queue: false});
 }
 
+//Flash picture box green when you completed an item
+function flashPicGreen() {
+  $('#picture').css("background-color","rgba(0,255,0,1)");
+  $('#picture').animate({'background-color':'rgba(255,255,255,0)'}, {duration:1000,queue: false});
+}
+
 //Handles keypress, checking if you got right or wrong.
 function handleKeyPress(l) {
   //65=a 49=1 81=q 37=left
@@ -111,9 +152,18 @@ function handleKeyPress(l) {
       flashGreen("a");
       on++;
       if(on >= seq.length) {
+        $('#nametext').text(current.name);
+        $('#name').show();
+        $('#name').fadeOut(1000);
         loadItem();
+        flashPicGreen();
+      } else {
+        child = child.a.next;
+        loadChild();
       }
     } else {
+      child = game.start;
+      loadChild();
       flashRed("a");
       on=0;
     }
@@ -125,9 +175,18 @@ function handleKeyPress(l) {
       flashGreen("b");
       on++;
       if(on >= seq.length) {
+        $('#nametext').text(current.name);
+        $('#name').show();
+        $('#name').fadeOut(1783*2 /*god bless america*/);
+        flashPicGreen();
         loadItem();
+      } else {
+        child = child.b.next;
+        loadChild();
       }
     } else {
+      child = game.start;
+      loadChild();
       flashRed("b");
       on=0;
     }
@@ -137,7 +196,13 @@ function handleKeyPress(l) {
 
 //Smilar to loadItem but loads from child variable
 function loadChild() {
+  $('#desctext').text(child.text);
+  $('#desc').textfill({maxFontPixels:108});
 
+  //Set choice text
+  $('#atext').text(child.a.text);
+  $('#btext').text(child.b.text);
+  $('.fill').textfill({maxFontPixels:50, innerTag:'p'});
 }
 
 // Thanks: http://stackoverflow.com/questions/1527803/generating-random-numbers-in-javascript-in-a-specific-range
@@ -179,5 +244,5 @@ function loadItem() {
 
 //Run when you've gone through all items
 function end() {
-  alert('you won');
+  alert(Math.round(s*10)/10 + ' seconds');
 }

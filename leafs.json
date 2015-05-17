@@ -25,5 +25,6 @@
     {"seq":"bab", "name": "Liquidambar (sweet gum)", "img":"iv.png"},
     {"seq":"bba", "name": "Betula (birch)", "img":"i.png"},
     {"seq":"bbb", "name": "Magnolia (magnolia)", "img":"vi.png"}
-    ]
+  ],
+  "key":"leafs/key.jpg"
 }

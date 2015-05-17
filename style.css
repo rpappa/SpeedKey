@@ -1,3 +1,6 @@
+/*THIS CSS IS BARELY COMMENTED. ITS PROBABLY TERRIBLE SO DON'T EVEN LOOK AT IT
+THAT WOULD BE A WASTE OF YOUR TIME*/
+
 /*:root {
     --contrast-color:#1A1A1A
 }*/
@@ -21,6 +24,15 @@ body {
 #leafs {
   background-color:#91EA5E;
   background-image:url("leafs.png");
+  background-size:100%;
+}
+
+#animals {
+  outline-color:#C0D3C5;
+  color:#C0D3C5;
+  overflow: hidden;
+  background-color:#5414D5;
+  background-image:url("animals.png");
   background-size:100%;
 }
 
@@ -49,7 +61,7 @@ body {
   margin-bottom:20%;
 }
 
-#timer {
+#time {
   text-align:center;
   /*color:#1A1A1A;*/
   margin-left:20%;
@@ -140,4 +152,23 @@ body {
   left: 0;
   right: 0;
   margin: auto;
+}
+
+#bottom {
+  font-size:35px;
+  font-weight:bold;
+  margin:auto;
+  width:75%;
+}
+
+#timer {
+  width:15%;
+  float:left;
+  display:inline-block;
+}
+#name {
+  text-align:right;
+  width:85%;
+  float:right;
+  display:inline-block;
 }
