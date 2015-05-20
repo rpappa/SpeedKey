@@ -6923,8 +6923,8 @@ function hasOwnProperty(obj, prop) {
 var http=require('http');
 
 window.loadJSON = loadJSON;
-function loadJSON(window.location.href + '\' + file, callback) {
-  http.get({path: file+'.json'}, function(res) {
+function loadJSON(file, callback) {
+  http.get({path: window.location.href + '/' + file+'.json'}, function(res) {
     var file = "";
     res.on('data', function(buf) {
       file += buf;
