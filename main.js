@@ -246,3 +246,15 @@ function loadItem() {
 function end() {
   alert(Math.round(s*10)/10 + ' seconds');
 }
+
+function addScore(score) {
+  if(!localStorage.getItem("scores")) {
+    localStorage.setItem("scores", [score]);
+  } else {
+    localStorage.setItem("scores", localStorage.getItem("scores").push(score));
+  }
+}
+
+function scores() {
+  return localStorage.getItem("scores");
+}
