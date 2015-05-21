@@ -268,11 +268,11 @@ function visualizeHighscores() {
 
 function addScore(score) {
   if(!localStorage.getItem("scores")) {
-    localStorage.setItem("scores", [score]);
+    localStorage.setItem("scores", JSON.stringify([score]));
   } else {
-    var scores = localStorage.getItem("scores");
+    var scores = JSON.parse(localStorage.getItem("scores"));
     scores.push(score);
-    localStorage.setItem("scores", scores);
+    localStorage.setItem("scores", JSON.stringify(scores));
   }
 }
 
