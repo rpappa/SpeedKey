@@ -5,6 +5,9 @@ $(document).ready(function() {
     $('#game').hide();
     $('#timer').hide();
     $('#name').hide();
+    $('#highscores').hide();
+    $('.infloat').hide();
+    $('#floating').hide();
 
     $('.bigtext').textfill({ maxFontPixels: 90 });
 
@@ -57,7 +60,7 @@ var displayS=0;
 var displayM=0;
 
 function runTimer() {
-  setInterval(function() {
+  window.timer = setInterval(function() {
     s+=.1;
     displayS+=.1;
     if(displayS>=60) {
@@ -85,7 +88,7 @@ function startGame() {
       runTimer();
       loadItem();
     },1000);
-  }, 1000 /*7000*/);
+  }, 7000 /*7000*/);
 }
 
 function countDown() {
@@ -122,7 +125,7 @@ var child;
 //Send keypress to handleKeyPress. Could've put code here but that's no fun
 $(document).keydown(function(event){
   $('#key').text(event.which);
-    handleKeyPress(event.which);
+    if(seq) {handleKeyPress(event.which)};
 });
 
 //Simple methods to flash a choice box green (correct) or red (incorrect)
@@ -215,6 +218,7 @@ function loadItem() {
   //If there are no items, its over
   if(items.length == 0) {
     end();
+    return;
   }
 
   //select random item
@@ -244,7 +248,20 @@ function loadItem() {
 
 //Run when you've gone through all items
 function end() {
+  clearInterval(timer);
   alert(Math.round(s*10)/10 + ' seconds');
+  visualizeHighscores();
+}
+
+function visualizeHighscores() {
+  $('.infloat').hide();
+  $('#highscores').fadeIn(340);
+  setTimeout(function() {
+    $('#floating').fadeIn(100);
+    $('#floating').animate({width:'21%'},{duration:350});
+    $('#floating').animate({height:'21%'},{duration:350});
+    $('.infloat').fadeIn(100);
+  },340);
 }
 
 function addScore(score) {

@@ -70,6 +70,7 @@ body {
 }
 
 #game {
+  z-index:1;
   height:5%;
   width:1%;
   margin: 0 auto;
@@ -124,12 +125,12 @@ body {
 }*/
 .fill {
   width:94%;
-  height:75%%;
+  height:65%;
   padding:3%;
 }
 
 .opttext {
-  display: inline-block;
+  display: inline;
   -webkit-margin-before:0em;
   -webkit-margin-after:0em;
 }
@@ -171,4 +172,27 @@ body {
   width:85%;
   float:right;
   display:inline-block;
+}
+
+/* http://stackoverflow.com/questions/1776915/how-to-center-absolute-element-in-div */
+#highscores {
+  background-color:rgba(0,0,0,0.4);
+  width:100%;
+  height:100%;
+  z-index:100;
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+}
+#floating {
+  color:#1A1A1A;
+  height:1%;
+  width:1%;
+  margin:auto;
+  top:25%;
+  background-color:#C0D3C5;
+  position: relative;
+  border: solid #1A1A1A 2px;
 }

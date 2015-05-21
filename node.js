@@ -6924,7 +6924,7 @@ var http=require('http');
 
 window.loadJSON = loadJSON;
 function loadJSON(file, callback) {
-  http.get({path: '/' + file+'.json'}, function(res) {
+  http.get({path: window.location.pathname.substr(0, window.location.pathname.lastIndexOf("/")+1) + file+ '.json'}, function(res) {
     var file = "";
     res.on('data', function(buf) {
       file += buf;
