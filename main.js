@@ -249,6 +249,8 @@ function loadItem() {
 //Run when you've gone through all items
 function end() {
   clearInterval(timer);
+  addScore(Math.round(s*10)/10);
+  console.log(scores());
   alert(Math.round(s*10)/10 + ' seconds');
   visualizeHighscores();
 }
@@ -268,7 +270,9 @@ function addScore(score) {
   if(!localStorage.getItem("scores")) {
     localStorage.setItem("scores", [score]);
   } else {
-    localStorage.setItem("scores", localStorage.getItem("scores").push(score));
+    var scores = localStorage.getItem("scores");
+    scores.push(score);
+    localStorage.setItem("scores", scores);
   }
 }
 
