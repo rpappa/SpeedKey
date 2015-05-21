@@ -125,12 +125,12 @@ body {
 }*/
 .fill {
   width:94%;
-  height:75%%;
+  height:65%;
   padding:3%;
 }
 
 .opttext {
-  display: inline-block;
+  display: inline;
   -webkit-margin-before:0em;
   -webkit-margin-after:0em;
 }

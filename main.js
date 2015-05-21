@@ -88,7 +88,7 @@ function startGame() {
       runTimer();
       loadItem();
     },1000);
-  }, 1000 /*7000*/);
+  }, 7000 /*7000*/);
 }
 
 function countDown() {
@@ -125,7 +125,7 @@ var child;
 //Send keypress to handleKeyPress. Could've put code here but that's no fun
 $(document).keydown(function(event){
   $('#key').text(event.which);
-    handleKeyPress(event.which);
+    if(seq) {handleKeyPress(event.which)};
 });
 
 //Simple methods to flash a choice box green (correct) or red (incorrect)
@@ -218,6 +218,7 @@ function loadItem() {
   //If there are no items, its over
   if(items.length == 0) {
     end();
+    return;
   }
 
   //select random item
