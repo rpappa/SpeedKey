@@ -1,3 +1,4 @@
+//Holds json about current game (key)
 var game;
 
 $(document).ready(function() {
@@ -38,6 +39,10 @@ $(document).ready(function() {
 function visualizeGame(start) {
   $('#options').hide();
   $('#picture').hide();
+  displayS=0;
+  displayM=0;
+  $('#s').text(Math.round(displayS*10)/10);
+  $('#m').text(displayM);
   $('#chooser').fadeOut({duration:450,queue: false});
   //After thats done bring up the game box
   setTimeout(function() {
@@ -73,6 +78,7 @@ function runTimer() {
 }
 
 function startGame() {
+  s=0;
   console.log(game);
   countDown();
   setTimeout(function () {
@@ -88,11 +94,12 @@ function startGame() {
       runTimer();
       loadItem();
     },1000);
-  }, 7000 /*7000*/);
+  }, 2000 /*7000*/);
 }
 
 function countDown() {
   var count = 5;
+  $('#countdown').show();
   $('#countdown').html(game.name);
   $('#time').textfill({maxFontPixels:800});
   var refresh = setInterval(function() {
@@ -250,7 +257,6 @@ function loadItem() {
 function end() {
   clearInterval(timer);
   addScore(Math.round(s*10)/10);
-  console.log(scores());
   alert(Math.round(s*10)/10 + ' seconds');
   visualizeHighscores();
 }
@@ -261,21 +267,70 @@ function visualizeHighscores() {
   setTimeout(function() {
     $('#floating').fadeIn(100);
     $('#floating').animate({width:'21%'},{duration:350});
-    $('#floating').animate({height:'21%'},{duration:350});
+    $('#floating').animate({height:'42%'},{duration:350});
     $('.infloat').fadeIn(100);
+    $('#urtime').text('Your time: ' + Math.round(s*10)/10 + ' seconds');
+    var scores = getscores();
+    scores.sort(function(a,b){return a - b});
+    console.log(scores);
+    $('#top').empty();
+    for(i=0;i<=4;i++) {
+      if(scores[i]) {
+        $('#top').append('<li>'+scores[i]+' seconds</li>');
+        $('#home').click(function() {
+          showHome();
+        });
+      }
+    }
+
+    // $('#top').append('<li>'+scores[1]+' seconds</li>');
+    // $('#top').append('<li>'+scores[2]+' seconds</li>');
   },340);
 }
 
+$('#home').click(function() {
+  showHome();
+});
+
+function showHome() {
+  $('#floating').fadeOut(340);
+  $('#highscores').fadeOut(340);
+  $('#timer').hide();
+  $('#options').fadeOut(500);
+  $('#picture').fadeOut(500);
+  $('#game').animate({height:'5%'}, 350);
+  setTimeout(function () {
+    $('#game').animate({width:'1%'}, {duration: 350, queue:false});
+    $('#game').fadeOut({duration: 400, queue:false});
+    $('body').animate({'background-color':'#4CC355'}, {duration:450,queue: false});
+    $('body').animate({'color':'#1A1A1A'}, {duration:450,queue: false});
+    $('body').animate({'outline-color':'#1A1A1A'}, {duration:450,queue: false});
+    $('body').animate({'border-color':'#1A1A1A'}, {duration:450,queue: false});
+    setTimeout(function() {
+      $('#chooser').fadeIn({duration:450,queue: false});
+    },400);
+    setTimeout(function() {
+      $('#time').show();
+      $('#timer').hide();
+      $('#options').fadeIn(1);
+      $('#picture').fadeIn(1);
+    },850);
+  }, 350);
+}
+
 function addScore(score) {
-  if(!localStorage.getItem("scores")) {
-    localStorage.setItem("scores", JSON.stringify([score]));
-  } else {
-    var scores = JSON.parse(localStorage.getItem("scores"));
+  var scores;
+  if(!localStorage.getItem("scores"+game.name)) {
+    scores = [];
     scores.push(score);
-    localStorage.setItem("scores", JSON.stringify(scores));
+    localStorage["scores"+game.name] = JSON.stringify(scores);
+  } else {
+    scores = JSON.parse(localStorage["scores"+game.name]);
+    scores.push(score);
+    localStorage["scores"+game.name] = JSON.stringify(scores);
   }
 }
 
-function scores() {
-  return localStorage.getItem("scores");
+function getscores() {
+  return JSON.parse(localStorage.getItem("scores"+game.name));
 }

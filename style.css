@@ -70,6 +70,7 @@ body {
 }
 
 #game {
+  overflow:hidden;
   z-index:1;
   height:5%;
   width:1%;
@@ -174,9 +175,18 @@ body {
   display:inline-block;
 }
 
+#urtime {
+  font-size:20px;
+}
+
+#home, #restart {
+  margin:3px;
+  color: #EB01A5; /*EBOLA*/
+}
+
 /* http://stackoverflow.com/questions/1776915/how-to-center-absolute-element-in-div */
 #highscores {
-  background-color:rgba(0,0,0,0.4);
+  background-color:rgba(0,0,0,0.6);
   width:100%;
   height:100%;
   z-index:100;
@@ -187,6 +197,7 @@ body {
   bottom:0;
 }
 #floating {
+  padding:2px;
   color:#1A1A1A;
   height:1%;
   width:1%;

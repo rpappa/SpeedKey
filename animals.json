@@ -1,4 +1,4 @@
-{"name":"Animals", "folder":"animals", "start":{"text":"1. Has legs/limbs",
+{"name":"animals", "folder":"animals", "start":{"text":"1. Has legs/limbs",
   "a":{"text":"Has two or more limbs",
     "next":{"text":"2. Number of legs (for walking/standing)",
       "a":{"text":"Has two legs", "next":{"text":"3. Presence of feathers",
