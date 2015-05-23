@@ -64,21 +64,36 @@ var s=0;
 var displayS=0;
 var displayM=0;
 
-function runTimer() {
-  window.timer = setInterval(function() {
-    s+=.1;
-    displayS+=.1;
-    if(displayS>=60) {
-      displayS-=60;
-      displayM+=1;
-    }
-    $('#s').text(Math.round(displayS*10)/10);
-    $('#m').text(displayM);
-  }, 100);
+var timer;
+
+var timerF = function() {
+  s+=.1;
+  displayS+=.1;
+  if(displayS>=60) {
+    displayS-=60;
+    displayM+=1;
+  }
+  $('#s').text(Math.round(displayS*10)/10);
+  $('#m').text(displayM);
 }
 
+var timer = null;
+
+function timerManager(flag) {
+   if(flag) {
+     timer =  setInterval(timerF, 100);
+   } else {
+     clearInterval(timer);
+   }
+}
+
+var playing = false;
+
 function startGame() {
+  playing = true;
   s=0;
+  displayS=0;
+  displayM=0;
   console.log(game);
   countDown();
   setTimeout(function () {
@@ -91,7 +106,7 @@ function startGame() {
       $('#picture').show();
       $('.corner').textfill({maxFontPixels:80});
       items=game.items;
-      runTimer();
+      timerManager(true);
       loadItem();
     },1000);
   }, 2000 /*7000*/);
@@ -100,7 +115,9 @@ function startGame() {
 function countDown() {
   var count = 5;
   $('#countdown').show();
+  $('#countdown').fadeIn(0);
   $('#countdown').html(game.name);
+  $('#time').show();
   $('#time').textfill({maxFontPixels:800});
   var refresh = setInterval(function() {
     $('#countdown').fadeIn(20);
@@ -132,7 +149,7 @@ var child;
 //Send keypress to handleKeyPress. Could've put code here but that's no fun
 $(document).keydown(function(event){
   $('#key').text(event.which);
-    if(seq) {handleKeyPress(event.which)};
+    if(seq && playing) {handleKeyPress(event.which)};
 });
 
 //Simple methods to flash a choice box green (correct) or red (incorrect)
@@ -255,7 +272,8 @@ function loadItem() {
 
 //Run when you've gone through all items
 function end() {
-  clearInterval(timer);
+  playing=false;
+  timerManager(false);
   addScore(Math.round(s*10)/10);
   alert(Math.round(s*10)/10 + ' seconds');
   visualizeHighscores();
@@ -280,6 +298,9 @@ function visualizeHighscores() {
         $('#home').click(function() {
           showHome();
         });
+        $('#restart').click(function() {
+          restart();
+        });
       }
     }
 
@@ -291,6 +312,16 @@ function visualizeHighscores() {
 $('#home').click(function() {
   showHome();
 });
+
+function restart() {
+  $('#floating').fadeOut(340);
+  $('#highscores').fadeOut(340);
+  loadJSON(game.name, function(json) {
+    game=JSON.parse(json);
+    visualizeGame(true);
+  });
+  // startGame();
+}
 
 function showHome() {
   $('#floating').fadeOut(340);
