@@ -64,7 +64,6 @@ var s=0;
 var displayS=0;
 var displayM=0;
 
-var timer;
 
 var timerF = function() {
   s+=.1;
@@ -109,25 +108,40 @@ function startGame() {
       timerManager(true);
       loadItem();
     },1000);
-  }, 2000 /*7000*/);
+  }, 7000 /*7000*/);
 }
 
+var count = 5;
+
 function countDown() {
-  var count = 5;
+  count=5;
+  console.log(count);
   $('#countdown').show();
   $('#countdown').fadeIn(0);
   $('#countdown').html(game.name);
   $('#time').show();
   $('#time').textfill({maxFontPixels:800});
-  var refresh = setInterval(function() {
-    $('#countdown').fadeIn(20);
-    $('#countdown').html(count);
-    $('#countdown').fadeOut(900);
-    count--;
-    if(count==-1) {
-      clearInterval(refresh);
-    }
-  }, 1000);
+  cdManager(true);
+}
+
+var countDownF = function() {
+  $('#countdown').fadeIn(20);
+  $('#countdown').html(count);
+  $('#countdown').fadeOut(900);
+  count--;
+  if(count==-1) {
+    cdManager(false);
+  }
+}
+
+var cd = null;
+
+function cdManager(flag) {
+   if(flag) {
+     cd =  setInterval(countDownF, 1000);
+   } else {
+     clearInterval(cd);
+   }
 }
 
 
@@ -280,6 +294,7 @@ function end() {
 }
 
 function visualizeHighscores() {
+  console.log('showing hscores')
   $('.infloat').hide();
   $('#highscores').fadeIn(340);
   setTimeout(function() {
@@ -295,14 +310,15 @@ function visualizeHighscores() {
     for(i=0;i<=4;i++) {
       if(scores[i]) {
         $('#top').append('<li>'+scores[i]+' seconds</li>');
-        $('#home').click(function() {
-          showHome();
-        });
-        $('#restart').click(function() {
-          restart();
-        });
       }
     }
+    $('#home').click(function() {
+      showHome();
+    });
+    $('#restart').click(function() {
+      console.log('restart clicked');
+      restart();
+    });
 
     // $('#top').append('<li>'+scores[1]+' seconds</li>');
     // $('#top').append('<li>'+scores[2]+' seconds</li>');
@@ -314,6 +330,7 @@ $('#home').click(function() {
 });
 
 function restart() {
+  console.log('RESTARTING');
   $('#floating').fadeOut(340);
   $('#highscores').fadeOut(340);
   loadJSON(game.name, function(json) {
