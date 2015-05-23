@@ -12,6 +12,16 @@ $(document).ready(function() {
 
     $('.bigtext').textfill({ maxFontPixels: 90 });
 
+    //Emulate keypresses when boxes are clicked
+    $('#a').click(function() {
+      // console.log('a click');
+      handleKeyPress(65);
+    });
+    $('#b').click(function() {
+      // console.log('b click');
+      handleKeyPress(66);
+    });
+
     //When the leaf box is clicked. Redo for each key
     $('#leafs').click(function() {
       //Switch bg color. Change bg color for each key
@@ -93,7 +103,7 @@ function startGame() {
   s=0;
   displayS=0;
   displayM=0;
-  console.log(game);
+  // console.log(game);
   countDown();
   setTimeout(function () {
     $('#countdown').fadeIn(20);
@@ -115,7 +125,7 @@ var count = 5;
 
 function countDown() {
   count=5;
-  console.log(count);
+  // console.log(count);
   $('#countdown').show();
   $('#countdown').fadeIn(0);
   $('#countdown').html(game.name);
@@ -165,6 +175,9 @@ $(document).keydown(function(event){
   $('#key').text(event.which);
     if(seq && playing) {handleKeyPress(event.which)};
 });
+
+
+
 
 //Simple methods to flash a choice box green (correct) or red (incorrect)
 function flashGreen(box) {
@@ -294,7 +307,7 @@ function end() {
 }
 
 function visualizeHighscores() {
-  console.log('showing hscores')
+  // console.log('showing hscores')
   $('.infloat').hide();
   $('#highscores').fadeIn(340);
   setTimeout(function() {
@@ -305,7 +318,7 @@ function visualizeHighscores() {
     $('#urtime').text('Your time: ' + Math.round(s*10)/10 + ' seconds');
     var scores = getscores();
     scores.sort(function(a,b){return a - b});
-    console.log(scores);
+    // console.log(scores);
     $('#top').empty();
     for(i=0;i<=4;i++) {
       if(scores[i]) {
@@ -316,7 +329,7 @@ function visualizeHighscores() {
       showHome();
     });
     $('#restart').click(function() {
-      console.log('restart clicked');
+      // console.log('restart clicked');
       restart();
     });
 
@@ -330,7 +343,7 @@ $('#home').click(function() {
 });
 
 function restart() {
-  console.log('RESTARTING');
+  // console.log('RESTARTING');
   $('#floating').fadeOut(340);
   $('#highscores').fadeOut(340);
   loadJSON(game.name, function(json) {
