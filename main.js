@@ -9,6 +9,7 @@ $(document).ready(function() {
     $('#highscores').hide();
     $('.infloat').hide();
     $('#floating').hide();
+    $('#keydark').hide();
 
     $('.bigtext').textfill({ maxFontPixels: 90 });
 
@@ -20,6 +21,25 @@ $(document).ready(function() {
     $('#b').click(function() {
       // console.log('b click');
       handleKeyPress(66);
+    });
+
+
+    //Handlers for highscore table buttons
+    $('#home').click(function() {
+      showHome();
+    });
+    $('#restart').click(function() {
+      // console.log('restart clicked');
+      restart();
+    });
+    $('#viewkey').click(function() {
+      showKey();
+    });
+    $('#keydark').click(function() {
+      hideKey();
+    });
+    $('#keyholder').click(function() {
+      hideKey();
     });
 
     //When the leaf box is clicked. Redo for each key
@@ -325,13 +345,6 @@ function visualizeHighscores() {
         $('#top').append('<li>'+scores[i]+' seconds</li>');
       }
     }
-    $('#home').click(function() {
-      showHome();
-    });
-    $('#restart').click(function() {
-      // console.log('restart clicked');
-      restart();
-    });
 
     // $('#top').append('<li>'+scores[1]+' seconds</li>');
     // $('#top').append('<li>'+scores[2]+' seconds</li>');
@@ -377,6 +390,14 @@ function showHome() {
       $('#picture').fadeIn(1);
     },850);
   }, 350);
+}
+
+function showKey() {
+  $('#keyimg').attr('src', game.key);
+  $('#keydark').fadeIn(350)
+}
+function hideKey() {
+  $('#keydark').fadeOut(350)
 }
 
 function addScore(score) {
